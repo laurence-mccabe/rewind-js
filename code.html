@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Rewind: A Coding Project by Laurence McCabe.</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
+    <link href="css/prism.css" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+</head> 
+
+<body class="d-flex flex-column h-100 line-numbers">
+<!-- ==== Nav section-->
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark">
+    <div class="container-fluid ">
+        <a class="navbar-brand text-light logoFont" href="index.html"><img src="img/faviconLmWhiteAndBlack/favicon-16x16.png"  width="30" height="24" alt="" class="d-inline-block"> Hundo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse  navbar-collapse " id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
+                <li class="">
+                    <a class="nav-link active text-secondary" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary " href="/app.html">The App</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/code.html">The Code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" target="_blank" href="https://github.com/Lm768184/RewindGH">Git Repository</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- ==== Main section-->
+    <main class="flex-shrink-0">
+       <div class="container py-5 px-5">
+           <h2 class="border-1 border-bottom border-dark mt-5">The Code for Rewind:</h2>
+           <div class="row row-cols-1 row-cols-lg-2">
+            <!-- code side -->
+               <div class="col-lg-8">
+                   <pre class="line-numbers bg-black"><code class="language-javascript">
+                    function getWord() 
+{
+
+    let stringA = (document.getElementById("wordValue")).value;
+
+    if(stringA == "")
+    {alert ("Please enter a value")};
+
+    // normalize string - remove white spaces,numbers and non-alphabetic characters
+    let stringB = stringhA.replace().replace(/[^a-zA-Z0-9 ]/g, '');
+    let stringhC = stringhB.replace(/ /g,'');
+    let stringhD = stringhC.replace(/[0-9]/g, '');
+    let stringhE = stringhD.toLowerCase();
+    //create an array from each character in the word:
+    let forwardsArray = stringhE.split("");
+    CreateBackwardsArray(forwardsArray);
+}
+
+    function createBackwardsArray(forwardsArray)
+{
+    //create an index counter for the creation of a new array to hold the values backwards
+    let total = 0;
+    for (i in forwardsArray) {
+    total++;
+    }
+    // intialize new array, create the array which contains the values backwards.
+    var backwardsArray = [];
+    count =0;
+    for(i=total-1; i>=0; i--)
+    {
+        backwardsArray[count] = forwardsArray[i]
+        count++
+    }
+    displayPalindrome(forwardsArray, backwardsArray);
+}
+
+
+    function displayPalindrome(forwardsArray, backwardsArray)
+{
+    // convert the arrays into strings to display to the screen
+    var out1 = forwardsArray.join("");
+    var out2 = backwardsArray.join("");
+
+    //display the output to the screen.
+    if(out1 == out2)
+    {
+        var d = document.getElementById("output1");
+        d.classList.remove("invisible");
+        d.innerHTML = `<b>Congratulations! You have entered a Palindrome.</b><br>
+                      <em>Your word reversed is:</em><b> ${out2}</b>`;
+    }
+    else
+    {
+        var d = document.getElementById("output1");
+        d.classList.remove("invisible");
+        d.innerHTML = `<b>Sorry, You have not entered a Palindrome.</b><br>
+                       Your word reversed is:<em> ${out2}</em>`;
+     }
+}
+   
+                   </code>
+                </pre>
+               </div>
+               <div class="col-lg-4">
+                   <p class="lead">The Code for displaying the Palindrome result is structured into main 3 parts (or functions): </p>
+                   <h5>getWord()</h5>
+                   <p>Here, we first check to see if the user has entered a value, if not we then prompt them to (lines 
+                     6 and 7). Next, we obtain the value of the user input via the ".value" property of the getElementById() function.
+                    Next on lines 10, 11 and 12 we search for any characters within the input that are not letters and remove them. 
+                    We also "normalise" or make all the characters the same case for comparitive purposes.<br><br>
+                    The string.split() method used on the string provided by the user provides an array (line 15), with each index of the array
+                    representing a character in the string. This allows us to create another array in the next step with each index of the current 
+                    array reversed. We can then later turn them back into strings by using the .join() function on the array.
+
+                   <h5>createBackwardsArray()</h5>
+                   Here, lines 22, 23 and 24 we create an index counter for the new array initialized at line 27 to ensure the new array is populated 
+                   with the same amount of elements in forwardsArray()). Lines 25-28 we populate the new 
+                   array with the current array's values reversed. <br><br>Now that we have 2 arrays with the users input reading forwards and backwards, we hand off 
+                   to the final part of the process to display the content.
+
+                   </br><br>
+                   <h5>displayPalindrome()</h5>
+                    Firstly, on lines 41 and 42, we convert the arrays back to strings in order to prepare them for displaying. 
+                    Based on whether or not the strings match (the Palindrome requirement) at lines 45 and 52, we use an if/else clause 
+                    to branch the final operation out into two seperate sets of screen output details. <BR><br>
+                    The methods for displaying the content are the same in both cases (only the words differ); we simply add text to the innerHTML properties 
+                    of the elements beneath the Results heading, by using the getElementById() function to gain access to the respective 
+                    element. The invisible class is removed so the affected div element becomes visible and the information displayed within it to the user.
+                   </p>
+               </div>
+           </div>
+       </div>
+    </main>
+    <!-- ==== Footer section-->
+    <footer class="footer mt-auto py-1 bg-dark sticky-footer">
+        <div class="container-fluid text-center">
+            <div class="row row-cols-1 row-cols-md-3">
+                <div class="col text-light justify-content-center align-items-center order-last order-md-first">
+                    <span class="text-muted FooterTextSize">&copy;2022 Laurence McCabe | laurence.mccabe@gmail.com</span> 
+                </div>
+                <div class="col text-light">
+                    <img src="img/faviconLmWhiteAndBlack/logo-no-background.png" alt="Laurence McCabe Logo" height="35px">
+                </div>
+                <div class="col d-flex align-items-center justify-content-center justify-content-md-end">
+                    <div class="row">
+                        <div class="col social"> <a href="#" target="_blank"><i class="fa fa-linkedin fa-1x" aria-hidden="true"></i></a></div>
+                        <div class="col social"> <a href="#" target="_blank"><i class="fa fa-github fa-1x" aria-hidden="true"></i></a></div>
+                        <div class="col social"> <a href="#" target="_blank"><i class="fa fa-twitter fa-1x" aria-hidden="true"></i></a></div>
+                        <div class="col social"> <a href="#" target="_blank"><i class="fa fa-youtube fa-1x" aria-hidden="true"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="/js/prism.js"></script>
+    <script>
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
+        })
+    </script>
+
+</body>
+
+</html>
